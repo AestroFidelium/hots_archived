@@ -1,1 +1,6 @@
 /target
+/true
+/logs
+.vscode
+.github
+/assets

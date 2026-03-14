@@ -1,11 +1,111 @@
+cargo-features = ["profile-rustflags"]
+
 [package]
-name = "mymoba"
+name = "heroes_of_the_storm_on_rust"
 version = "0.1.0"
 edition = "2024"
+default-run = "client"
+
+[[bin]]
+name = "server"
+path = "src/server/main.rs"
+
+[[bin]]
+name = "client"
+path = "src/client/main.rs"
 
 [dependencies]
-bevy = {version = "0.16.0", features = ["dynamic_linking"]}
-log = { version = "*", features = ["max_level_debug", "release_max_level_warn"] }
-rand = "0.9.1"
+winit = { version = "0.30.12" }
+env_logger = { version = "0.11.5" }
+log = { version = "0.4.22" }
+rand = "0.9.2"
+glium = "*"
+image = "0.25.8"
+glutin = "0.32.3"
+obj = "0.10.2"
+raw-window-handle = "0.6.2"
+glutin-winit = "0.5.0"
+cgmath = "0.18.0"
+lazy_static = "1.5.0"
+bevy_ecs = "0.16.1"
+derive_more = { version = "2.0.1", features = ["full"] }
+bevy_time = "0.16.1"
+glyph_brush = "0.7.12"
+ab_glyph = "0.2.31"
+fontdue = "0.9.3"
+paste = "1.0.15"
+uuid = { version = "1.18.1", features = ["v4", "fast-rng", "rng"] }
+tokio = { version = "1.47.1", features = ["full"] }
+serde = { version = "1.0.228", features = ["derive"] }
+bincode = { version = "2.0.1", features = ["derive", "serde"] }
+arc-swap = "1.7.1"
+tracing = "0.1.41"
+tracing-appender = "0.2.3"
+tracing-subscriber = "0.3.20"
+thiserror = "2.0.17"
+gltf = "1.4.1"
+anyhow = "1.0.100"
+
+# [dependencies]
+# anyhow = "1.0.99"
+# # async-trait = "0.1.89"
+# # chrono = "0.4.41"
+# # flume = "0.11.1"
+# # futures = "0.3.31"
+# # macroquad = "0.4.14"
+# # macroquad-particles = "0.2.2"
+# # macroquad-platformer = "0.2.0"
+# # macroquad-tiled = "0.2.1"
+# # miniquad = "0.4.8"
+# rayon = "1.11.0"
+# # atomic = { version = "0.6.1", features = ["nightly", "serde", "std"] }
+# # crossbeam = { version = "0.8.4", features = ["nightly"] }
+# # dashmap = { version = "6.1.0", features = ["rayon", "serde", "inline", "typesize", "arbitrary"] }
+# env_logger = "0.11.8"
+# # hecs = { version = "0.10.5", features = ["serde", "column-serialize", "macros", "hecs-macros", "row-serialize"] }
+# # lazy_static = "1.5.0"
+# log = "0.4.27"
+# # parking_lot = { version = "0.12.4", features = ["arc_lock", "nightly", "owning_ref", "serde"] }
+# # thiserror = "2.0.12"
+# # pollster = "0.4.0"
+# # uuid = { version = "1.17.0", features = ["v4"] }
+# # wgpu = { version = "26.0.1", features = ["dx12", "parking_lot", "serde", "vulkan", "vulkan-portability"] }
+# pollster = "0.4"
+# wgpu = "26.0.0"
+# winit = "0.29"
+# tracing = "0.1.41"
+# cursor-icon = "1.2.0"
+# vulkano = "0.35.2"
+# vulkano-shaders = "0.35.0"
+# vulkano-util = "0.35.0"
+# # tokio = 
+# # vulkano = { version = "0.35.2", default-features = false}
+
+# [profile.dev]
+# opt-level = 0        # минимальная оптимизация → быстрее всего
+# codegen-units = 256  # больше параллельности
+# incremental = true   # инкрементальная компиляция
+# debug = 1            # чуть меньше отладочной информации
+# strip = false
+
+# [profile.dev.build-override]
+# # Вместо opt-level=3 (сильно нагружает!)
+# opt-level = 0
+# codegen-units = 256
 
 
+# # [profile.release]
+# # opt-level = 3
+# # codegen-units = 1
+# # lto = "fat"
+# # strip = true
+# # panic = "abort"
+# # debug = false
+
+
+# [profile.release]
+# opt-level = "z"       # оптимизация под размер (можно "s" или "z")
+# lto = true            # включаем Link Time Optimization
+# codegen-units = 1     # меньше юнитов -> лучше оптимизация
+# panic = "abort"       # отключает unwind, меньше кода
+# strip = true          # (nightly) убирает таблицы символов
